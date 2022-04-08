@@ -1,0 +1,15 @@
+
+from Bio import SeqIO
+
+name=[]
+strings= []
+
+with open ("/Users/myriamobialo/Downloads/rosalind_grph.txt",'r') as fa:
+    for x  in SeqIO.parse(fa,'fasta'):
+        name.append(str(x.name))
+        strings.append(str(x.seq))
+for i in range(len(strings)):
+    for j in range(len(strings)):
+        if i != j:
+            if strings[i][-3:] == strings[j][:3]:
+                print(name[i], name[j])
