@@ -1,0 +1,29 @@
+def tree():
+    file = open("/Users/myriamobialo/Downloads/rosalind_tree.txt", "r")
+    nodes = int(file.readline().replace('\n', ''))
+    lines = sum(1 for x in file)
+    p= [-1 for i in range(nodes)]
+    file.seek(0)
+    file.readline()
+    for i in range(lines):
+        adj_list = file.readline().split(' ')
+        start_node = int(adj_list[0]) - 1
+        end_node = int(adj_list[1]) - 1
+        if p[end_node] != -1:
+            new_parent = start_node
+            while p[end_node] != -1:
+                old_p= p[end_node]
+                p[end_node] = new_parent
+                new_p= end_node
+                end_node = old_p
+            p[end_node] = new_parent
+        else:
+            p[end_node] = start_node
+    file.close()
+    n= 0
+    for el in p:
+        if el == -1:
+            n+= 1
+    result= n- 1
+    print(result)
+    return
