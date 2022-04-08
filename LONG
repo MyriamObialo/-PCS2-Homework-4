@@ -1,0 +1,29 @@
+f = open("/Users/myriamobialo/Downloads/rosalind_long.txt", "r")
+l= []
+string= f.read()
+string= string.replace("Rosalind_", "")
+string= string.replace("\n", "")
+string= ''.join([i for i in string if not i.isdigit()])
+l= string.split(">")
+l.remove("")
+
+def long(l, bbb=''):
+    if (len(l) == 0):
+        return bbb
+
+    elif (len(bbb) == 0):
+        bbb = l.pop(0)
+        return long(l, bbb)
+
+    else:
+        for x in range(len(l)):
+            a = l[x]
+            for j in range(len(a) // 2):
+                c = len(a) - j
+                if bbb.startswith(a[j:]):
+                    l.pop(x)
+                    return long(l, a[:j] + bbb)
+                if bbb.endswith(a[:c]):
+                    l.pop(x)
+                    return long(l, bbb + a[c:])
+print(long(l))
