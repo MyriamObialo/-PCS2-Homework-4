@@ -1,0 +1,26 @@
+def find_after(string, char, index):
+    return string[index:].find(char)
+
+def sseq():
+    file = open("/Users/myriamobialo/Downloads/rosalind_sseq.txt", "r")
+    s= []
+    b = ''
+    for line in file:
+        if line[0] == '>':
+            if b:
+                s.append(b)
+                b = ''
+        else:
+            b += line.replace('\n', '')
+    s.append(b)
+    indices = []
+    for i in range(len(s[1])):
+        start_idx = 0
+        if i != 0:
+            start_idx = indices[i - 1]
+        partial_idx = find_after(s[0], s[1][i], start_idx)
+        assert partial_idx >= 0
+        indices.append(start_idx + partial_idx + 1)
+    for item in indices:
+        print(item, end=' ')
+    return
