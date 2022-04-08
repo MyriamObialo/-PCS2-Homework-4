@@ -1,0 +1,42 @@
+def tran(s,t):
+    AG=0
+    CT=0
+    AC=0
+    GT=0
+    AT=0
+    GC=0
+    for x in range(len(s)):
+        for i in range(len(t)):
+            if x==i:
+    #transitions
+                if s[x]=="A" and t[i]=="G":
+                    AG+=1
+                if t[i]=="A" and s[x]=="G":
+                    AG +=1
+                if s[x]=="C" and t[i]=="T":
+                    CT +=1
+                if t[i]=="C" and s[x]=="T":
+                    CT +=1 
+    #transversions                
+                if s[x]=="A" and t[i]=="C":
+                    AC+=1
+                if t[i]=="A" and s[x]=="C":
+                    AC +=1
+                if s[x]=="A" and t[i]=="T":
+                    AT+=1
+                if t[i]=="A" and s[x]=="T":
+                    AT +=1
+
+                if s[x]=="G" and t[i]=="T":
+                    GT +=1
+                if t[i]=="G" and s[x]=="T":
+                    GT +=1 
+                if s[x]=="G" and t[i]=="C":
+                    GC +=1
+                if t[i]=="G" and s[x]=="C":
+                    GC +=1 
+    transition=AG+CT
+    transversion= AC+ AT+ GC+ GT
+    Ratio= transition/transversion
+
+    print(round(Ratio,11))
