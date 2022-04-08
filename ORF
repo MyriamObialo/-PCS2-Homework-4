@@ -1,0 +1,14 @@
+from Bio import SeqIO
+import re
+
+with open('/Users/myriamobialo/Downloads/rosalind_orf.txt', 'r', encoding='utf-8') as handle:
+    s = SeqIO.read(handle, 'fasta')
+    reverse = s.reverse_complement()
+
+pattern = re.compile('(?=(M[^*]*\*))')
+p= set()
+for i in range(3):
+    p= p.union(pattern.findall(str(s[i:].translate().seq)), 
+                            pattern.findall(str(reverse[i:].translate().seq)))
+
+print(*(p[:-1] for x in p), sep='\n')
