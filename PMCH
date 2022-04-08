@@ -1,0 +1,17 @@
+from Bio import SeqIO
+import math
+
+    
+name= []
+string = []
+with open ("/Users/myriamobialo/Downloads/rosalind_pmch.txt",'r') as fa:
+    for x in SeqIO.parse(fa,'fasta'):
+        name.append(str(x.name))
+        string.append(str(x.seq))
+def pmch(s):
+    a = s.count('A')
+    c = s.count('C')
+    return math.factorial(a) * math.factorial(c)
+
+string = string[0]
+print(pmch(string))
