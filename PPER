@@ -1,0 +1,9 @@
+file= open('/Users/myriamobialo/Downloads/rosalind_pper.txt', 'r')
+strings=file.read().split()
+n= int(strings[0])
+k= int(strings[1])
+result=1
+for i in range(k):
+    result*= (n - i)
+    result%=1000000
+print(result)
